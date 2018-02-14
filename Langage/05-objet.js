@@ -107,7 +107,9 @@ const coords3dFactory = function(x, y, z) {
       return 'coord3d';
     }
   };
-}
+};
+
+const coords3dFactoryES6 = (x = 0, y = 0, z = 0) => ({x, y, z});
 
 const coords3dA = coords3dFactory(10);
 console.log(coords3dA); // { x: 10, y: 0, z: 0 }

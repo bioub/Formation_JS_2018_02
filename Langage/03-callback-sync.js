@@ -20,3 +20,7 @@ console.log('fin');
 // |filter            - map     - forEach          - log(fin)
 // +-----------------------------------------------------------> temps
 // output :                       4        16        fin
+
+
+const sum = [1, 2, 3, 4].reduce((acc, elt) => acc + elt, 0);
+console.log(sum); // 10
