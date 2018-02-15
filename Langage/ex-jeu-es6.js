@@ -1,20 +1,20 @@
 // 1 - Method properties
 const Random = {
-  get: function () {
+  get() {
     return Math.random();
   },
 
-  getArbitrary: function (min, max) {
+  getArbitrary(min, max) {
     return Math.random() * (max - min) + min;
   },
 
-  getInt: function (min, max) {
+  getInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
   },
 
-  getIntInclusive: function (min, max) {
+  getIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -25,53 +25,57 @@ const Random = {
 const readline = require('readline');
 
 // 2 - class
-const Jeu = function(options /* 3 - Default value */) {
-  options = options || {};
+class Jeu {
+  constructor(options = {}) {
 
-  // 4 - Destructuring object (with default param)
-  const min = options.min || 0;
-  const max = (options.max !== undefined) ? options.max : 100;
+    // 4 - Destructuring object (with default param)
+    const {min = 0, max = 100} = options;
 
-  this._rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+    this._rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
 
-  this._entierAlea = Random.getIntInclusive(min, max);
-  this._essais = [];
-};
-
-Jeu.prototype.jouer = function() {
-
-  if (this._essais.length) {
-    // 5 - Template String / Template literal
-    console.log('Vous avez déjà joué : ' + this._essais.join(', '));
+    this._entierAlea = Random.getIntInclusive(min, max);
+    this._essais = [];
   }
 
-  this._rl.question('Quel est l\'entier ? ', (answer) => {
-    const entierSaisi = Number.parseInt(answer);
+  static getClass() {
+    return 'Jeu';
+  }
 
-    if (Number.isNaN(entierSaisi)) {
-      console.log('Erreur : il faut saisir un nombre');
-      return this.jouer();
+  jouer() {
+
+    if (this._essais.length) {
+      // 5 - Template String / Template literal
+      console.log(`Vous avez déjà joué : ${this._essais.join(', ')}`);
     }
 
-    this._essais.push(entierSaisi);
+    this._rl.question(`Quel est l'entier ? `, (answer) => {
+      const entierSaisi = Number.parseInt(answer);
 
-    if (entierSaisi < this._entierAlea) {
-      console.log('Trop petit');
-      return this.jouer();
-    }
+      if (Number.isNaN(entierSaisi)) {
+        console.log('Erreur : il faut saisir un nombre');
+        return this.jouer();
+      }
 
-    if (entierSaisi > this._entierAlea) {
-      console.log('Trop grand');
-      return this.jouer();
-    }
+      this._essais.push(entierSaisi);
 
-    console.log('Gagné')
-    this._rl.close();
-  });
-};
+      if (entierSaisi < this._entierAlea) {
+        console.log('Trop petit');
+        return this.jouer();
+      }
+
+      if (entierSaisi > this._entierAlea) {
+        console.log('Trop grand');
+        return this.jouer();
+      }
+
+      console.log('Gagné');
+      this._rl.close();
+    });
+  }
+}
 
 const jeu = new Jeu();
 jeu.jouer();

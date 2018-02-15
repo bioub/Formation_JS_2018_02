@@ -61,3 +61,16 @@ function jouer() {
 }
 
 jouer();
+
+// pile d'appel
+// ^
+// |
+// |
+// |                    question                 question
+// |                    jouer                    jouer
+// |question            log(Petit)               log(Grand)
+// |jouer    - ......   =>         ...........   =>         ........
+// +--------------------------------------------------------------------------------> temps
+// input :            50\n                     75\n
+// output :                Petit                    Grand
+// file d'attente : =>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM Level 1</title>
+  <script>
+    // Module JS
+    // ici IIFE : Immediately Invoked Function Expression
+    (function () {
+      'use strict';
+
+      function loaded() {
+        var inputElt = document.getElementById('champ-prenom');
+        var spanElt = document.getElementById('destination');
+
+        function hello() {
+          spanElt.textContent = inputElt.value;
+        }
+
+        inputElt.onkeyup = hello;
+      }
+
+      window.onload = loaded;
+
+    }());
+  </script>
+</head>
+<body>
+  <div>
+    Prénom : <input value="Inconnu" id="champ-prenom">
+  </div>
+  <p>
+    Bonjour <span id="destination">Inconnu</span> !
+  </p>
+</body>
+</html>

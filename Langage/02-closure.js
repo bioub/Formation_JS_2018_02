@@ -11,10 +11,12 @@ function externe(msg) {
 }
 
 const helloFct = externe('Hello');
+const byeFct = externe('Bye');
 console.log(typeof externe); // function
 console.log(typeof interne); // undefined
 
 helloFct(); // interne (affiche Hello)
+byeFct(); // interne (affiche Bye)
 
 // Sans Closure
 for (var i = 0; i < 3; i++) {
@@ -39,6 +41,9 @@ for (let i = 0; i < 3; i++) {
 function createButton(value) {
   const element = document.createElement('button');
   element.innerText = value;
+
+  // si value = objet volumineux (déclenche le GC)
+  value = null;
 
   element.addEventListener('click', () => {
     console.log(value);

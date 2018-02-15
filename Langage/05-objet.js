@@ -20,6 +20,8 @@ console.log(typeof console); // object
 console.log(Math.sum); // undefined
 
 // On peut étendre un objet (ajouter une clé)
+// Bonne pratique : il vaudrait mieux créer un nouvel
+// objet (ex MyMath) plutôt que d'étendre un objet standard
 Math.sum = (a, b) => a + b;
 console.log(Math.sum(1, 2)); // 3
 
@@ -86,6 +88,7 @@ for (let key in config) {
 
 // On peut sérialiser un objet (le transformer en une string)
 const json = JSON.stringify(config);
+console.log(json); // {"dbHost":"localhost","dbName":"mabase","dbPort":27017}
 
 const configFromJson = JSON.parse(json);
 console.log(configFromJson.dbHost);
@@ -135,11 +138,14 @@ Contact.prototype.hello = function() {
 
 const romain = new Contact('Romain');
 const edouard = new Contact('Edouard');
+
 console.log(typeof romain); // object
 console.log(romain._prenom); // 'Romain'
 console.log(romain.hello()); // 'Bonjour je m'appelle Romain'
 console.log(romain.hasOwnProperty('_prenom')); // true
 console.log(romain.hasOwnProperty('hello')); // false
 console.log(romain.hello === edouard.hello); // true (la fonction n'est pas dupliqué)
+
+console.log(romain instanceof Contact); // true
 
 console.log(Contact.getClass());

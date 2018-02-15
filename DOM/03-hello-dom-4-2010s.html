@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM Level 1</title>
+  <style>
+  /*
+  selecteur {
+    prop: value;
+    prop: value;
+  }
+  */
+  </style>
+</head>
+<body>
+  <div>
+    Prénom : <input value="Inconnu" class="champ-prenom">
+  </div>
+  <p>
+    Bonjour <span class="destination">Inconnu</span> !
+  </p>
+  <script>
+      // Module JS
+      // ici IIFE : Immediately Invoked Function Expression
+      (function () {
+        'use strict';
+  
+        var inputElt = document.body.querySelector('.champ-prenom');
+        var spanElt = document.body.querySelector('.destination');
+
+        function hello() {
+          spanElt.innerHTML = '<b>' + inputElt.value + '</b>';
+        }
+
+        inputElt.addEventListener('keyup', hello);
+  
+      }());
+    </script>
+</body>
+</html>

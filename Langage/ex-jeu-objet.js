@@ -69,5 +69,8 @@ Jeu.prototype.jouer = function() {
   });
 };
 
-const jeu = new Jeu();
+const jeu = new Jeu({
+  min: 10,
+  max: 100,
+});
 jeu.jouer();
