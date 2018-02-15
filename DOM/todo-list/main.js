@@ -4,6 +4,14 @@
   const formElt = document.querySelector('.todo-form');
   const newTodoElt = document.querySelector('.new-todo');
   const todoListElt = document.querySelector('.todo-list');
+  const togglerElt = document.querySelector('.toggle-all');
+
+  togglerElt.addEventListener('change', () => {
+    const checkboxNodeList = todoListElt.querySelectorAll('.todo-checkbox');
+
+    const checkboxes = Array.from(checkboxNodeList); // ES6
+    checkboxes.forEach((cb) => cb.checked = togglerElt.checked);
+  });
 
   formElt.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -11,14 +19,30 @@
 
     // todoListElt.innerHTML = `<input value="${newTodoElt.value}">`;
 
+    const divElt = document.createElement('div');
+
+    const checkboxElt = document.createElement('input');
+    checkboxElt.type = 'checkbox';
+    checkboxElt.className = 'todo-checkbox';
+    divElt.appendChild(checkboxElt);
+
     const inputElt = document.createElement('input');
     inputElt.value = newTodoElt.value;
+    divElt.appendChild(inputElt);
+
+    const buttonElt = document.createElement('button');
+    buttonElt.innerHTML = '-';
+    divElt.appendChild(buttonElt);
+
+    buttonElt.addEventListener('click', (event) => {
+      todoListElt.removeChild(divElt);
+    });
 
     if (todoListElt.childElementCount) {
-      todoListElt.insertBefore(inputElt, todoListElt.firstElementChild);
+      todoListElt.insertBefore(divElt, todoListElt.firstElementChild);
     }
     else {
-      todoListElt.appendChild(inputElt);
+      todoListElt.appendChild(divElt);
     }
 
     /*
