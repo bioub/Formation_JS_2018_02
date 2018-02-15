@@ -4,15 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DOM Level 4</title>
-  <style>
-  /*
-  selecteur {
-    prop: value;
-    prop: value;
-  }
-  */
-  </style>
+  <title>jQuery</title>
 </head>
 <body>
   <div>
@@ -21,20 +13,21 @@
   <p>
     Bonjour <span class="destination">Inconnu</span> !
   </p>
+  <script src="./node_modules/jquery/dist/jquery.js"></script>
   <script>
       // Module JS
       // ici IIFE : Immediately Invoked Function Expression
       (function () {
         'use strict';
   
-        var inputElt = document.body.querySelector('.champ-prenom');
-        var spanElt = document.body.querySelector('.destination');
+        var $inputElt = $('.champ-prenom');
+        var $spanElt = $('.destination');
 
         function hello() {
-          spanElt.innerHTML = '<b>' + inputElt.value + '</b>';
+          $spanElt.html('<b>' + $inputElt.val() + '</b>');
         }
 
-        inputElt.addEventListener('keyup', hello);
+        $inputElt.on('keyup', hello);
   
       }());
     </script>
