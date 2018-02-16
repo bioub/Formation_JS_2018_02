@@ -14,12 +14,11 @@ try {
     fs.statSync(logDir);
   }
   catch (err) {
-    if (err.code === 'ENOENT') {
-      fs.mkdirSync(logDir);
-    }
-    else {
+    if (err.code !== 'ENOENT') {
       throw err;
     }
+
+    fs.mkdirSync(logDir);
   }
 
   log(logFile, 'Ligne 1');

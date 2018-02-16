@@ -1,11 +1,12 @@
 const assert = require('assert');
+const chalk = require('chalk');
 const hello = require('../src/hello');
 
 try {
   assert.strictEqual(hello('Romain'), 'Bonjour Romain !');
-  console.log('Les tests de hello passent');
+  console.log(chalk.green('Les tests de hello passent'));
 }
 catch (err) {
-  console.log('Les tests de hello échouent');
-  console.log(err);
+  console.log(chalk.red('Les tests de hello échouent'));
+  console.log(chalk.red(err));
 }

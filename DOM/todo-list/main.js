@@ -13,21 +13,48 @@
     checkboxes.forEach((cb) => cb.checked = togglerElt.checked);
   });
 
-  formElt.addEventListener('submit', (event) => {
-    event.preventDefault();
-    console.log(event.target); // l'élément qui a déchenché l'événement
+  async function loadTodos() {
+    /*
+    const request = new XMLHttpRequest();
 
-    // todoListElt.innerHTML = `<input value="${newTodoElt.value}">`;
+    request.responseType = 'json';
+
+    request.onload = function() {
+      if (request.status === 200) {
+        request.response.forEach(addTodo);
+      }
+    };
+
+    request.open('GET', 'https://jsonplaceholder.typicode.com/todos?_limit=5');
+    request.send();
+    */
+
+    /*
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .then((response) => response.json())
+      .then((todos) => todos.forEach(addTodo));
+      */
+
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=5');
+    const todos = await response.json();
+    todos.forEach(addTodo);
+  }
+
+  loadTodos();
+
+  function addTodo(todos = {}) {
+    const { title = '', completed = false } = todos;
 
     const divElt = document.createElement('div');
 
     const checkboxElt = document.createElement('input');
     checkboxElt.type = 'checkbox';
     checkboxElt.className = 'todo-checkbox';
+    checkboxElt.checked = completed;
     divElt.appendChild(checkboxElt);
 
     const inputElt = document.createElement('input');
-    inputElt.value = newTodoElt.value;
+    inputElt.value = title;
     divElt.appendChild(inputElt);
 
     const buttonElt = document.createElement('button');
@@ -44,6 +71,15 @@
     else {
       todoListElt.appendChild(divElt);
     }
+  }
+
+  formElt.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log(event.target); // l'élément qui a déchenché l'événement
+
+    // todoListElt.innerHTML = `<input value="${newTodoElt.value}">`;
+
+    addTodo({title: newTodoElt.value});
 
     /*
     1 - Insérer la balise input dans une balise div, et insérer cette balise div

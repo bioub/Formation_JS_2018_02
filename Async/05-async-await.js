@@ -16,14 +16,12 @@ async function logs() {
       const stats = await fs.stat(logDir);
     }
     catch (err) {
-      if (err.code === 'ENOENT') {
-        await fs.mkdir(logDir);
-      }
-      else {
+      if (err.code !== 'ENOENT') {
         throw err;
       }
+      await fs.mkdir(logDir);
     }
-  
+
     await log(logFile, 'Ligne 1');
     await log(logFile, 'Ligne 2');
     await log(logFile, 'Ligne 3');
@@ -34,7 +32,7 @@ async function logs() {
   catch (err) {
     console.log(err);
   }
-  
+
 }
 
 logs();

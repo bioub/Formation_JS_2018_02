@@ -44,15 +44,15 @@ contactES5.helloAsync();
 contactES5.helloAsyncBind();
 
 
-var contactES6 = {
+const contactES6 = {
   prenom: 'Romain',
   helloSync() {
-    console.log('ES5 helloSync: Bonjour je m\'appelle ' + this.prenom);
+    console.log('ES6 helloSync: Bonjour je m\'appelle ' + this.prenom);
   },
   helloAsync() {
     // this dans la portée de closure
     setTimeout(() => {
-      console.log('ES5 helloAsync: Bonjour je m\'appelle ' + this.prenom);
+      console.log('ES6 helloAsync: Bonjour je m\'appelle ' + this.prenom);
     }, 100);
   },
   helloAsyncBind() {
@@ -64,4 +64,31 @@ contactES6.helloSync();
 contactES6.helloAsync();
 contactES6.helloAsyncBind();
 
+/*
+class ContactESNext {
 
+  prenom = 'Romain';
+
+  helloSync = () => {
+    console.log('ESNext helloSync: Bonjour je m\'appelle ' + this.prenom);
+  }
+
+  helloAsync() {
+    // this dans la portée de closure
+    setTimeout(() => {
+      console.log('ESNext helloAsync: Bonjour je m\'appelle ' + this.prenom);
+    }, 100);
+  }
+
+  helloAsyncBind() {
+    setTimeout(this.helloAsync, 1000);
+  }
+
+}
+
+const contactESNext = new ContactESNext();
+
+contactESNext.helloSync();
+contactESNext.helloAsync();
+contactESNext.helloAsyncBind();
+*/

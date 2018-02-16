@@ -8,6 +8,7 @@
   <script>
     function hello() {
       var inputElt = document.getElementsByTagName('input')[0];
+      //var inputElt = document.documentElement.lastChild.childNodes[1].childNodes[1];
       var spanElt = document.getElementsByTagName('span')[0];
       spanElt.firstChild.nodeValue = inputElt.value;
     }

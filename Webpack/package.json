@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.17.0",
+    "html-webpack-plugin": "^2.30.1",
+    "rimraf": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "scripts": {
+    "serve:dev": "webpack-dev-server --env=dev",
+    "build:dev": "rimraf dist && webpack --env=dev",
+    "build:prod": "rimraf dist && webpack --env=prod",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "moment": "^2.20.1"
+  }
+}

@@ -1,7 +1,7 @@
 const Observable = require('rxjs').Observable;
 
 function timeout(delay) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(resolve, delay);
   });
 }
